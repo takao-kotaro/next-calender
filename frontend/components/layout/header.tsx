@@ -4,22 +4,7 @@ import { MobileSidebar } from "./mobile-sidebar";
 import { UserNav } from "./user-nav";
 import Link from "next/link";
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 export default function Header() {
-=======
-=======
->>>>>>> 89841afa12e3dbf981e398eb57072939a74fca42
-type Props = {
-  projectId: string;
-};
-
-export default function Header(props: Props) {
-  const { projectId } = props;
-<<<<<<< HEAD
->>>>>>> 89841afa12e3dbf981e398eb57072939a74fca42
-=======
->>>>>>> 89841afa12e3dbf981e398eb57072939a74fca42
   return (
     <div className="fixed top-0 left-0 right-0 supports-backdrop-blur:bg-background/60 border-b bg-background/95 backdrop-blur z-20">
       <nav className="h-14 flex items-center justify-between px-4">
@@ -43,15 +28,7 @@ export default function Header(props: Props) {
           </Link>
         </div>
         <div className={cn("block lg:!hidden")}>
-<<<<<<< HEAD
-<<<<<<< HEAD
           <MobileSidebar />
-=======
-          <MobileSidebar projectId={projectId} />
->>>>>>> 89841afa12e3dbf981e398eb57072939a74fca42
-=======
-          <MobileSidebar projectId={projectId} />
->>>>>>> 89841afa12e3dbf981e398eb57072939a74fca42
         </div>
 
         <div className="flex items-center gap-2">

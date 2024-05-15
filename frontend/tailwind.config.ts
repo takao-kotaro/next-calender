@@ -6,13 +6,7 @@ const config = {
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "./constants/**/*.{ts,tsx}",
-=======
->>>>>>> 89841afa12e3dbf981e398eb57072939a74fca42
-=======
->>>>>>> 89841afa12e3dbf981e398eb57072939a74fca42
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
