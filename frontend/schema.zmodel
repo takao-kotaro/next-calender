@@ -33,7 +33,7 @@ model User {
   createdAt             DateTime   @default(now())
   updatedAt             DateTime   @updatedAt
   accounts              Account[]
-  events                Event[]
+  events                Schedule[]
 
   // everyone can signup, and user profile is also publicly readable
   @@allow('create', true)
@@ -84,10 +84,18 @@ model VerificationRequest {
 model Event {
   id         String   @id @default(cuid())
   name       String
-  started_at DateTime
-  end_at     DateTime
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  schedules  Schedule[]
+  @@allow('all',true)
+}
+
+model  Schedule {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  eventId    String
+  event      Event    @relation(fields: [eventId], references: [id])
   users User[]
 
   @@allow('all',true)
