@@ -8,12 +8,15 @@ import { Plus } from "lucide-react";
 import { columns } from "./table/columns";
 import { New } from "./new";
 import { useState } from "react";
-import { useFindManyEvent, useFindUniqueEvent } from "@/lib/hooks";
+import { useFindManyEvent } from "@/lib/hooks";
+import { TimePickerDemo } from "@/components/ui/time-picker-demo";
 
 const breadcrumbItems = [{ title: "Event", link: "/event" }];
 export default function page() {
   const { data: events, isLoading, error } = useFindManyEvent();
   const [open, setOpen] = useState(false);
+  const today = new Date();
+  const [date, setDate] = useState(today);
   if (isLoading) return <p>Loading...</p>;
 
   if (error) return <p>Error {error as string}</p>;
@@ -40,6 +43,14 @@ export default function page() {
         <div className="flex-1">
           <DataTable columns={columns} data={events ?? []} />
         </div>
+        <TimePickerDemo
+          date={date}
+          setDate={(value) => {
+            if (value) {
+              setDate(value);
+            }
+          }}
+        />
       </div>
     </>
   );

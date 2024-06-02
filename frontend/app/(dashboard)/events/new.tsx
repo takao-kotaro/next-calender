@@ -35,6 +35,7 @@ export const New = (props: Props) => {
   };
   const onSubmit = (values: z.infer<typeof schema>) => {
     onClose();
+    console.log(values);
     onCreateEvent(values);
     onReset();
   };

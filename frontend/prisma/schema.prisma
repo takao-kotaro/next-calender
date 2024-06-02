@@ -15,16 +15,16 @@ generator client {
 /// @@allow('create', true)
 /// @@allow('read,update,delete', auth() == this)
 model User {
-  id            String    @id() @default(uuid())
+  id            String     @id() @default(uuid())
   name          String
   /// @email
-  email         String?   @unique()
+  email         String?    @unique()
   emailVerified DateTime?
   image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt()
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt()
   accounts      Account[]
-  events        Event[]
+  events        Schedule[]
 }
 
 /// @@allow('create', true)
@@ -62,11 +62,19 @@ model VerificationRequest {
 
 /// @@allow('all', true)
 model Event {
-  id         String   @id() @default(cuid())
-  name       String
-  started_at DateTime
-  end_at     DateTime
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt()
-  users      User[]
+  id        String     @id() @default(cuid())
+  name      String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt()
+  schedules Schedule[]
+}
+
+/// @@allow('all', true)
+model Schedule {
+  id        String   @id() @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id])
+  users     User[]
 }

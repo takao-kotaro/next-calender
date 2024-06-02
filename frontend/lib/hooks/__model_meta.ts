@@ -39,7 +39,7 @@ const metadata = {
                     backLink: 'user',
                 }, events: {
                     name: "events",
-                    type: "Event",
+                    type: "Schedule",
                     isDataModel: true,
                     isArray: true,
                     backLink: 'users',
@@ -184,12 +184,6 @@ const metadata = {
                 }, name: {
                     name: "name",
                     type: "String",
-                }, started_at: {
-                    name: "started_at",
-                    type: "DateTime",
-                }, end_at: {
-                    name: "end_at",
-                    type: "DateTime",
                 }, createdAt: {
                     name: "createdAt",
                     type: "DateTime",
@@ -198,6 +192,50 @@ const metadata = {
                     name: "updatedAt",
                     type: "DateTime",
                     attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, schedules: {
+                    name: "schedules",
+                    type: "Schedule",
+                    isDataModel: true,
+                    isArray: true,
+                    backLink: 'event',
+                },
+            }
+            , uniqueConstraints: {
+                id: {
+                    name: "id",
+                    fields: ["id"]
+                },
+            }
+            ,
+        }
+        ,
+        schedule: {
+            name: 'Schedule', fields: {
+                id: {
+                    name: "id",
+                    type: "String",
+                    isId: true,
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, createdAt: {
+                    name: "createdAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@default", "args": [] }],
+                }, updatedAt: {
+                    name: "updatedAt",
+                    type: "DateTime",
+                    attributes: [{ "name": "@updatedAt", "args": [] }],
+                }, eventId: {
+                    name: "eventId",
+                    type: "String",
+                    isForeignKey: true,
+                    relationField: 'event',
+                }, event: {
+                    name: "event",
+                    type: "Event",
+                    isDataModel: true,
+                    backLink: 'schedules',
+                    isRelationOwner: true,
+                    foreignKeyMapping: { "id": "eventId" },
                 }, users: {
                     name: "users",
                     type: "User",
